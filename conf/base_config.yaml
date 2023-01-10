@@ -4,7 +4,7 @@ defaults:
 
 project: occam-networks
 paths:
-  root: /home/robik
+  root: /usr/not-backed-up/occam-nets-v1-epis-dev
 
 expt_suffix: ''
 expt_dir: null #${dataset.name}${dataset.trainval_sub_dir}/predict_${dataset.target_name}/${trainer.name}/${model.name}_${seed}${expt_suffix}

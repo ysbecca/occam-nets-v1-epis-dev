@@ -1,5 +1,5 @@
 #!/bin/bash
-conda activate pyvis
+conda activate pvyis
 
 GPU=1
 dataset=biased_mnist
@@ -8,7 +8,7 @@ optim=biased_mnist
 for p in 0.95; do
   CUDA_VISIBLE_DEVICES=${GPU} python main.py \
   model.name=resnet18 \
-  trainer=base_trainer \
+  trainer=csgmcmc_trainer \
   dataset=${dataset} \
   dataset.p_bias=${p} \
   optimizer=${optim} \

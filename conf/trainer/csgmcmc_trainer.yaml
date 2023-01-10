@@ -1,0 +1,12 @@
+defaults:
+  - base_trainer
+name: cSGMCMCTrainer
+
+
+visualize_every_n_step: 5
+is_hmc: False
+alpha: 0.3
+weight_decay: 1e-4
+models_per_cycle: 5
+temperature: 0.0001
+cycles: 1

@@ -11,3 +11,5 @@ trainval_sub_dir: ${dataset.bias_split_name}_${dataset.p_bias}
 original_image_size: 160
 image_size: 160
 train_pct: null
+dataset_size: 50000 # check
+num_batches: 391 # check
