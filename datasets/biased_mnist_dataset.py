@@ -14,7 +14,7 @@ import torchvision.transforms.functional as tF
 
 
 class BiasedMNISTDataset(BaseDataset):
-    def __init__(self, data_dir='/home/robik/datasets/biased_mnist',
+    def __init__(self, data_dir='/usr/not-backed-up/occam-nets-v1-epis-dev/datasets/biased_mnist/',
                  bias_split_name='full',
                  trainval_sub_dir='full_0.95',
                  split='Test',
@@ -131,16 +131,21 @@ class BiasedMNISTDataset(BaseDataset):
         img = pil_loader(os.path.join(self.images_dir, f'{index}.jpg'))
         img_n_mask = [img]
         mask_dir = self.images_dir + "_masks"
+
+
         if os.path.exists(mask_dir):
             mask = pil_loader(os.path.join(mask_dir, f'{index}.jpg'))
             img_n_mask.append(mask)
+
+
         if self.joint_transform is not None:
             img_n_mask = self.joint_transform(img_n_mask)
         if self.transform is not None:
             img_n_mask[0] = self.transform(img_n_mask[0])
+
         item_data['x'] = img_n_mask[0]
-        item_data['mask'] = img_n_mask[1]
-        item_data['mask'] = tF.to_tensor(item_data['mask'])
+        # item_data['mask'] = img_n_mask[1]
+        # item_data['mask'] = tF.to_tensor(item_data['mask'])
         item_data['y'] = torch.LongTensor([item_data['y']])
         return item_data
 
@@ -186,6 +191,7 @@ def create_biased_mnist_dataset_for_split(dataset_cfg, split):
 
 
 def create_biased_mnist_datasets(dataset_cfg):
+
     split_to_dataset = {'Test': {}}
     split_to_dataset['Train'] = create_biased_mnist_dataset_for_split(dataset_cfg, 'train')
     split_to_dataset['Test']['Val'] = create_biased_mnist_dataset_for_split(dataset_cfg, 'val')
